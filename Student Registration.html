@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mrisho Gambo Sec School</title>
+
+<style>
+*{box-sizing:border-box;font-family:Arial}
+body{margin:0;background:#f1f5f9;color:#172033}
+header{background:#075985;color:white;text-align:center;padding:22px}
+.container{width:96%;max-width:1400px;margin:20px auto}
+section{background:white;padding:20px;margin-bottom:20px;border-radius:10px;box-shadow:0 2px 8px #0002}
+h2{color:#075985;border-bottom:2px solid #bae6fd;padding-bottom:8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+label{font-weight:bold;display:block;margin-bottom:5px}
+input,select,textarea{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:5px}
+textarea{resize:vertical}
+button{padding:11px 16px;border:0;border-radius:5px;color:white;background:#075985;cursor:pointer;margin:5px}
+button:hover{opacity:.85}
+.danger{background:#dc2626}
+.success{background:#15803d}
+.warning{background:#ca8a04}
+.cardbox{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px}
+.card{background:#e0f2fe;text-align:center;padding:18px;border-radius:8px}
+.card b{display:block;font-size:28px;color:#075985}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:1200px}
+th,td{border:1px solid #cbd5e1;padding:8px;text-align:left}
+th{background:#075985;color:white}
+tr:nth-child(even){background:#f8fafc}
+.photo{width:80px;height:80px;object-fit:cover;border-radius:5px}
+.actions{display:flex;gap:5px}
+.notice{padding:12px;background:#dcfce7;color:#166534;display:none;margin-top:10px}
+@media print{
+ header,.form-section,.filters,.no-print,button{display:none!important}
+ section{box-shadow:none}
+ body{background:white}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>MRISHO GAMBO SEC SCHOOL</h1>
+    <p>MFUMO WA USAJILI WA WANAFUNZI WA FORM ONE</p>
+</header>
+
+<div class="container">
+
+<section class="cardbox">
+    <div class="card">Jumla ya Wanafunzi<b id="total">0</b></div>
+    <div class="card">Wavulana<b id="boys">0</b></div>
+    <div class="card">Wasichana<b id="girls">0</b></div>
+    <div class="card">Hawajakamilisha<b id="incomplete">0</b></div>
+</section>
+
+<section class="form-section">
+<h2>Fomu ya Usajili wa Mwanafunzi</h2>
+
+<form id="studentForm">
+
+<h3>1. Taarifa za Mwanafunzi</h3>
+<div class="grid">
+    <div>
+        <label>Namba ya Usajili</label>
+        <input type="text" id="regNo" placeholder="Mfano: MGS/2026/F1/0001">
+    </div>
+
+    <div>
+        <label>Jina la Kwanza *</label>
+        <input type="text" id="firstName" required>
+    </div>
+
+    <div>
+        <label>Jina la Kati</label>
+        <input type="text" id="middleName">
+    </div>
+
+    <div>
+        <label>Jina la Ukoo *</label>
+        <input type="text" id="lastName" required>
+    </div>
+
+    <div>
+        <label>Jinsia *</label>
+        <select id="gender" required>
+            <option value="">-- Chagua --</option>
+            <option value="Mwanaume">Mwanaume</option>
+            <option value="Mwanamke">Mwanamke</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Tarehe ya Kuzaliwa *</label>
+        <input type="date" id="dob" required>
+    </div>
+
+    <div>
+        <label>Mahali alipozaliwa</label>
+        <input type="text" id="birthPlace">
+    </div>
+
+    <div>
+        <label>Namba ya Mtihani Darasa la Saba</label>
+        <input type="text" id="examNo">
+    </div>
+
+    <div>
+        <label>Shule Aliyotoka</label>
+        <input type="text" id="previousSchool">
+    </div>
+
+    <div>
+        <label>Mkoa</label>
+        <input type="text" id="region">
+    </div>
+
+    <div>
+        <label>Wilaya</label>
+        <input type="text" id="district">
+    </div>
+
+    <div>
+        <label>Kata</label>
+        <input type="text" id="ward">
+    </div>
+
+    <div>
+        <label>Hali ya Ulemavu</label>
+        <select id="disability">
+            <option value="Hana">Hana</option>
+            <option value="Ulemavu wa kuona">Ulemavu wa kuona</option>
+            <option value="Ulemavu wa kusikia">Ulemavu wa kusikia</option>
+            <option value="Ulemavu wa kutembea">Ulemavu wa kutembea</option>
+            <option value="Mwingine">Mwingine</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Picha ya Mwanafunzi</label>
+        <input type="file" id="photo" accept="image/*">
+    </div>
+</div>
+
+<h3>2. Taarifa za Mzazi/Mlezi</h3>
+<div class="grid">
+    <div>
+        <label>Jina la Mzazi/Mlezi *</label>
+        <input type="text" id="guardian" required>
+    </div>
+
+    <div>
+        <label>Namba ya Simu *</label>
+        <input type="tel" id="phone" required>
+    </div>
+
+    <div>
+        <label>Anwani</label>
+        <textarea id="address"></textarea>
+    </div>
+
+    <div>
+        <label>Uhusiano na Mwanafunzi</label>
+        <select id="relationship">
+            <option value="Baba">Baba</option>
+            <option value="Mama">Mama</option>
+            <option value="Mlezi">Mlezi</option>
+            <option value="Ndugu">Ndugu</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Kazi ya Mzazi/Mlezi</label>
+        <input type="text" id="occupation">
+    </div>
+</div>
+
+<h3>3. Taarifa za Udahili</h3>
+<div class="grid">
+    <div>
+        <label>Mwaka wa Kujiunga *</label>
+        <input type="number" id="year" required>
+    </div>
+
+    <div>
+        <label>Tarehe ya Usajili *</label>
+        <input type="date" id="registrationDate" required>
+    </div>
+
+    <div>
+        <label>Kidato</label>
+        <input type="text" value="Form One" readonly>
+    </div>
+
+    <div>
+        <label>Darasa *</label>
+        <select id="className" required>
+            <option value="">-- Chagua --</option>
+            <option value="1A">1A</option>
+            <option value="1B">1B</option>
+            <option value="1C">1C</option>
+            <option value="1D">1D</option>
+            <option value="1E">1E</option>
+            <option value="1F">1F</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Hali ya Usajili</label>
+        <select id="status">
+            <option value="Amekamilisha">Amekamilisha</option>
+            <option value="Hajakamilisha">Hajakamilisha</option>
+        </select>
+    </div>
+
+    <div>
+        <label>Nyaraka Zilizowasilishwa</label>
+        <label><input type="checkbox" value="Cheti cha kuzaliwa" class="document"> Cheti cha kuzaliwa</label>
+        <label><input type="checkbox" value="Barua ya kuchaguliwa" class="document"> Barua ya kuchaguliwa</label>
+        <label><input type="checkbox" value="Picha" class="document"> Picha</label>
+        <label><input type="checkbox" value="Fomu ya afya" class="document"> Fomu ya afya</label>
+    </div>
+</div>
+
+<button type="submit" class="success">Sajili Mwanafunzi</button>
+<button type="reset" class="warning">Futa Fomu</button>
+<div id="message" class="notice">Taarifa zimehifadhiwa kikamilifu.</div>
+
+</form>
+</section>
+
+<section>
+<h2>Ripoti na Orodha ya Wanafunzi</h2>
+
+<div class="filters">
+    <div class="grid">
+        <input type="text" id="search" placeholder="Tafuta kwa jina au namba ya usajili">
+        <select id="filterYear">
+            <option value="">Miaka yote</option>
+        </select>
+        <select id="filterGender">
+            <option value="">Jinsia zote</option>
+            <option value="Mwanaume">Wavulana</option>
+            <option value="Mwanamke">Wasichana</option>
+        </select>
+        <select id="filterClass">
+            <option value="">Madarsa yote</option>
+            <option value="1A">1A</option>
+            <option value="1B">1B</option>
+            <option value="1C">1C</option>
+            <option value="1D">1D</option>
+  	    <option value="1E">1E</option>
+            <option value="1F">1F</option>
+        </select>
+        <select id="filterStatus">
+            <option value="">Hali zote</option>
+            <option value="Amekamilisha">Amekamilisha</option>
+            <option value="Hajakamilisha">Hajakamilisha</option>
+        </select>
+    </div>
+
+    <button onclick="window.print()">Chapisha / Hifadhi PDF</button>
+    <button onclick="exportCSV()" class="success">Pakua Excel/CSV</button>
+</div>
+
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Picha</th>
+<th>Namba ya Usajili</th>
+<th>Jina Kamili</th>
+<th>Jinsia</th>
+<th>Tarehe ya Kuzaliwa</th>
+<th>Mahali</th>
+<th>Shule Aliyotoka</th>
+<th>Mkoa/Wilaya/Kata</th>
+<th>Mzazi/Mlezi</th>
+<th>Simu</th>
+<th>Mwaka</th>
+<th>Darasa</th>
+<th>Hali</th>
+<th>Nyaraka</th>
+<th class="no-print">Kitendo</th>
+</tr>
+</thead>
+<tbody id="studentTable"></tbody>
+</table>
+</div>
+</section>
+
+</div>
+
+<script>
+let students = JSON.parse(localStorage.getItem("mrisho_students")) || [];
+let currentPhoto = "";
+
+const $ = id => document.getElementById(id);
+
+$("year").value = new Date().getFullYear();
+$("registrationDate").value = new Date().toISOString().split("T")[0];
+
+$("photo").addEventListener("change", function() {
+    const file = this.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = e => currentPhoto = e.target.result;
+    reader.readAsDataURL(file);
+});
+
+$("studentForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const year = $("year").value;
+    const number = String(
+        students.filter(s => s.year == year).length + 1
+    ).padStart(4, "0");
+
+    const documents = [...document.querySelectorAll(".document:checked")]
+        .map(item => item.value);
+
+    const student = {
+        id: Date.now(),
+        regNo: $("regNo").value || `MGS/${year}/F1/${number}`,
+        firstName: $("firstName").value,
+        middleName: $("middleName").value,
+        lastName: $("lastName").value,
+        gender: $("gender").value,
+        dob: $("dob").value,
+        birthPlace: $("birthPlace").value,
+        examNo: $("examNo").value,
+        previousSchool: $("previousSchool").value,
+        region: $("region").value,
+        district: $("district").value,
+        ward: $("ward").value,
+        disability: $("disability").value,
+        photo: currentPhoto,
+        guardian: $("guardian").value,
+        phone: $("phone").value,
+        address: $("address").value,
+        relationship: $("relationship").value,
+        occupation: $("occupation").value,
+        year: year,
+        registrationDate: $("registrationDate").value,
+        form: "Form One",
+        className: $("className").value,
+        status: $("status").value,
+        documents: documents
+    };
+
+    students.push(student);
+    save();
+    this.reset();
+
+    $("year").value = new Date().getFullYear();
+    $("registrationDate").value = new Date().toISOString().split("T")[0];
+    currentPhoto = "";
+
+    $("message").style.display = "block";
+    setTimeout(() => $("message").style.display = "none", 3000);
+});
+
+function save() {
+    localStorage.setItem("mrisho_students", JSON.stringify(students));
+    displayStudents();
+    statistics();
+    years();
+}
+
+function displayStudents() {
+    const text = $("search").value.toLowerCase();
+    const year = $("filterYear").value;
+    const gender = $("filterGender").value;
+    const className = $("filterClass").value;
+    const status = $("filterStatus").value;
+
+    const data = students.filter(s => {
+        const name = `${s.firstName} ${s.middleName} ${s.lastName}`.toLowerCase();
+
+        return (
+            (name.includes(text) || s.regNo.toLowerCase().includes(text)) &&
+            (!year || s.year == year) &&
+            (!gender || s.gender == gender) &&
+            (!className || s.className == className) &&
+            (!status || s.status == status)
+        );
+    });
+
+    $("studentTable").innerHTML = data.map((s, i) => `
+    <tr>
+        <td>${i + 1}</td>
+        <td>${s.photo ? `<img src="${s.photo}" class="photo">` : "Hakuna"}</td>
+        <td>${s.regNo}</td>
+        <td>${s.firstName} ${s.middleName} ${s.lastName}</td>
+        <td>${s.gender}</td>
+        <td>${s.dob}</td>
+        <td>${s.birthPlace}</td>
+        <td>${s.previousSchool}</td>
+        <td>${s.region}, ${s.district}, ${s.ward}</td>
+        <td>${s.guardian}</td>
+        <td>${s.phone}</td>
+        <td>${s.year}</td>
+        <td>${s.className}</td>
+        <td>${s.status}</td>
+        <td>${s.documents.join(", ")}</td>
+        <td class="no-print">
+            <button class="danger" onclick="deleteStudent(${s.id})">Futa</button>
+            <button onclick="viewStudent(${s.id})">Tazama</button>
+        </td>
+    </tr>
+    `).join("");
+}
+
+function deleteStudent(id) {
+    if (confirm("Una uhakika unataka kufuta mwanafunzi huyu?")) {
+        students = students.filter(s => s.id !== id);
+        save();
+    }
+}
+
+function viewStudent(id) {
+    const s = students.find(x => x.id === id);
+
+    alert(
+`TAARIFA ZA MWANAFUNZI
+
+Namba: ${s.regNo}
+Jina: ${s.firstName} ${s.middleName} ${s.lastName}
+Jinsia: ${s.gender}
+Tarehe ya kuzaliwa: ${s.dob}
+Mahali: ${s.birthPlace}
+Mtihani: ${s.examNo}
+Shule aliyotoka: ${s.previousSchool}
+Mkoa/Wilaya/Kata: ${s.region}/${s.district}/${s.ward}
+
+Mzazi/Mlezi: ${s.guardian}
+Simu: ${s.phone}
+Uhusiano: ${s.relationship}
+Kazi: ${s.occupation}
+
+Mwaka: ${s.year}
+Darasa: ${s.className}
+Hali ya usajili: ${s.status}
+Nyaraka: ${s.documents.join(", ")}`
+    );
+}
+
+function statistics() {
+    $("total").textContent = students.length;
+    $("boys").textContent = students.filter(s => s.gender === "Mwanaume").length;
+    $("girls").textContent = students.filter(s => s.gender === "Mwanamke").length;
+    $("incomplete").textContent =
+        students.filter(s => s.status === "Hajakamilisha").length;
+}
+
+function years() {
+    const list = [...new Set(students.map(s => s.year))].sort();
+
+    $("filterYear").innerHTML =
+        `<option value="">Miaka yote</option>` +
+        list.map(y => `<option value="${y}">${y}</option>`).join("");
+}
+
+function exportCSV() {
+    const headers = [
+        "Namba ya Usajili", "Jina Kamili", "Jinsia",
+        "Tarehe ya Kuzaliwa", "Mahali", "Namba ya Mtihani",
+        "Shule Aliyotoka", "Mkoa", "Wilaya", "Kata",
+        "Mzazi/Mlezi", "Simu", "Anwani", "Uhusiano",
+        "Kazi", "Mwaka", "Darasa", "Hali", "Nyaraka"
+    ];
+
+    const rows = students.map(s => [
+        s.regNo,
+        `${s.firstName} ${s.middleName} ${s.lastName}`,
+        s.gender,
+        s.dob,
+        s.birthPlace,
+        s.examNo,
+        s.previousSchool,
+        s.region,
+        s.district,
+        s.ward,
+        s.guardian,
+        s.phone,
+        s.address,
+        s.relationship,
+        s.occupation,
+        s.year,
+        s.className,
+        s.status,
+        s.documents.join(" | ")
+    ]);
+
+    const csv = [headers, ...rows]
+        .map(row => row.map(value => `"${String(value).replaceAll('"', '""')}"`).join(","))
+        .join("\n");
+
+    const blob = new Blob(["\ufeff" + csv], {type: "text/csv;charset=utf-8;"});
+    const link = document.createElement("a");
+
+    link.href = URL.createObjectURL(blob);
+    link.download = "ripoti_mrisho_gambo_students.csv";
+    link.click();
+}
+
+["search","filterYear","filterGender","filterClass","filterStatus"]
+.forEach(id => {
+    $(id).addEventListener("input", displayStudents);
+    $(id).addEventListener("change", displayStudents);
+});
+
+displayStudents();
+statistics();
+years();
+</script>
+
+</body>
+</html>
